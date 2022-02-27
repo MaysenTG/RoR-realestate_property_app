@@ -10,10 +10,6 @@
         <%= f.password_field :password, class: "form-control", id: "floatingPassword" %>
         <label for="floatingPassword">Password</label>
       </div>
-      <div class="form-floating">
-        <%= f.password_field :password_confirmation, class: "form-control", id: "floatingPassword" %>
-        <label for="floatingPassword">Password confirmation</label>
-      </div>
       <% if devise_mapping.rememberable? %>
         <div class="checkbox mb-3">
           <%= f.check_box :remember_me %>

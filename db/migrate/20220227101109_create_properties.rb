@@ -3,6 +3,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
     create_table :properties do |t|
       t.string :name
       t.string :address
+      t.text :description
       t.integer :price
       t.integer :bedrooms
       t.integer :bathrooms

@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Properties</h1>
-
 <div id="properties">
-  <% @properties.each do |property| %>
-    <%= render property %>
-    <p>
-      <%= link_to "Show this property", property %>
-    </p>
-  <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Bedrooms</th>
+        <th scope="col">Bathrooms</th>
+        <th scope="col">Agent</th>
+        <th scope="col" class="text-center" colspan="3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @properties.each do |property| %>
+        <tr>
+          <td><%= property.name %></td>
+          <td><%= property.address %></td>
+          <td><%= property.bedrooms %></td>
+          <td><%= property.bathrooms %></td>
+          <td><%= Agent.find(property.agent_id).first_name %></td>
+          <td><%= link_to 'Show', property %></td>
+          <td><%= link_to 'Edit', edit_property_path(property) %></td>
+          <td><%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
 <%= link_to "New property", new_property_path %>

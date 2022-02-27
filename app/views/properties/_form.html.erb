@@ -2,7 +2,6 @@
   <% if property.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
-
       <ul>
         <% property.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,33 +9,45 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
+  <div class="mb-3">
     <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
-
-  <div>
+  <div class="mb-3">
     <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, class: "form-control" %>
   </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.number_field :price %>
+  <div class="input-group">
+    <div class="mb-3">
+      <%= form.label :price, style: "display: block" %>
+      <%= form.number_field :price, class: "form-control" %>
+    </div>
+    &nbsp; 
+    <div class="mb-3">
+      <%= form.label :land_area, style: "display: block" %>
+      <%= form.number_field :land_area, class: "form-control" %>
+    </div>
+    &nbsp; 
+    <div class="mb-3">
+      <%= form.label :property_area, style: "display: block" %>
+      <%= form.number_field :property_area, class: "form-control" %>
+    </div>
+    &nbsp; 
+    <div class="mb-3">
+      <%= form.label :bedrooms, style: "display: block" %>
+      <%= form.number_field :bedrooms, class: "form-control" %>
+    </div>
+    &nbsp; 
+    <div class="mb-3">
+      <%= form.label :bathrooms, style: "display: block" %>
+      <%= form.number_field :bathrooms, class: "form-control" %>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :bedrooms, style: "display: block" %>
-    <%= form.number_field :bedrooms %>
-  </div>
-
-  <div>
-    <%= form.label :bathrooms, style: "display: block" %>
-    <%= form.number_field :bathrooms %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+  <div class="mb-3">
+    <button class="btn btn-primary">Save</button>
   </div>
 <% end %>

@@ -14,9 +14,9 @@
         <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
       </form>
       <div class="text-end">
-        <% if current_agent? %>
-          <%= link_to "Sign out", edit_agent_session_path(current_agent), class: "btn btn-outline-light me-2" %>
-          <%= link_to "Edit account", edit_agent_session_path(current_agent), class: "btn btn-outline-light me-2" %>
+        <% if agent_signed_in? %>
+          <%= link_to "Edit account", edit_agent_registration_path, class: "btn btn-outline-light me-2" %>
+          <%= button_to "Sign out", agent_registration_path, method: :delete, class: "btn btn-danger" %>
         <% else %>
           <%= link_to "Login", new_agent_session_path, class: "btn btn-outline-light me-2" %>
           <%= link_to "Create account", new_agent_registration_path, class: "btn btn-warning" %>

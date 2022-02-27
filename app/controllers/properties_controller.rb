@@ -1,5 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[ show edit update destroy ]
+  before_action :authenticate_agent!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /properties or /properties.json
   def index
@@ -22,6 +23,7 @@ class PropertiesController < ApplicationController
   # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
+    @property.agent_id = current_agent.id
 
     respond_to do |format|
       if @property.save
