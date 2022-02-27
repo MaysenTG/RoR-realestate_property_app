@@ -1,0 +1,27 @@
+<h2>Log in</h2>
+<body class="text-center">
+  <main class="form-signin" style="width: 100%; max-width: 450px; margin: auto;">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+      <div class="form-floating">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput" %>
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <%= f.password_field :password, class: "form-control", id: "floatingPassword" %>
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="form-floating">
+        <%= f.password_field :password_confirmation, class: "form-control", id: "floatingPassword" %>
+        <label for="floatingPassword">Password confirmation</label>
+      </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="checkbox mb-3">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <% end %>
+  </main>
+</body>
+<%= render "devise/shared/links" %>
