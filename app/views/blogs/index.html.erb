@@ -1,5 +1,4 @@
 <% if agent_signed_in? %>
-  <p style="color: green"><%= notice %></p>
   <h1>Blogs</h1>
   <div id="blogs">
     <table id="properties-table" class="table table-striped">
@@ -18,8 +17,13 @@
             <td><%= blog.body.truncate(50) %></td>
             <td><%= Agent.find(blog.agent_id).first_name %></td>
             <td><%= link_to 'Show', blog %></td>
-            <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-            <td><%= link_to 'Delete', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if blog.agent_id == current_agent.id %>
+              <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+              <td><%= link_to 'Delete', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+              <td>&nbsp;</th>
+              <td>&nbsp;</th>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -27,8 +31,9 @@
   </div>
   <%= link_to "New blog", new_blog_path %>
 <% else %>
+  <br/>
   <div class="container">
-    <div class="col">
+    <div class="col" style="width: 50%; margin: auto;">
       <h3 class="pb-4 mb-4 fst-italic border-bottom">
         From the Agents
       </h3>
@@ -36,8 +41,9 @@
         <%= link_to(blog) do %>
           <article class="blog-post">
             <h2 class="blog-post-title"><%= blog.title %></h2>
-            <p class="blog-post-meta"><%= blog.created_at.to_date %> by <a href="#"><%= Agent.find(blog.agent_id).first_name %></a></p>
+            <p class="blog-post-meta"><%= blog.created_at.to_date %> by <%= Agent.find(blog.agent_id).first_name %></p>
             <p><%= blog.body.truncate(250) %></p>
+            <%= link_to "Read more", blog_path(blog), class: "btn btn-success" %>
           </article>
         <% end %>
         <hr/>
