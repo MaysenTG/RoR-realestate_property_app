@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+<h2><%= @blog.title %></h2>
+<small>Published on <%= @blog.created_at.to_date %> by <%= Agent.find(@blog.agent_id).first_name %></small>
+<br/>
+<p><%= @blog.body %></p>
+
+<div>
+  <%= link_to "Back to blogs", blogs_path, class: "btn btn-info" %>
+</div>

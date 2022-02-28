@@ -12,4 +12,5 @@ class PublicController < ApplicationController
 
   def sale
   end
+  
 end

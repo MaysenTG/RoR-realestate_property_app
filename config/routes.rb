@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :blogs
   get 'public/index'
   get 'public/latest'
   get 'public/featured'
