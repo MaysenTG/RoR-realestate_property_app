@@ -1,13 +1,18 @@
-
-
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand">Navbar</a>
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-    
-    <%= button_to "Sign out", destroy_agent_session_path, method: :delete, class: "btn btn-danger" %>
-  </div>
-</nav>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Property Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <div style="width: 100%" class="text-end">
+          <span class="d-flex justify-content-end">
+            <%= link_to "Edit account", edit_agent_registration_path, class: "btn btn-info" %> &nbsp;
+            <%= button_to "Sign out", destroy_agent_session_path, method: :delete, class: "btn btn-danger" %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

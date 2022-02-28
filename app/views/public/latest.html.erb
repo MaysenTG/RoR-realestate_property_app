@@ -1,0 +1,22 @@
+<h1>Public#latest</h1>
+<p>Find me in app/views/public/latest.html.erb</p>
+<div class="container">
+  <div class="card-group">
+    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 g-2">
+      <% @properties.each do |property| %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= property.name %></h5>
+              <p class="card-text"><%= property.bedrooms %> <i class="fa-solid fa-bed"></i>&nbsp;&nbsp; <%= property.bathrooms %> <i class="fa-solid fa-toilet"></i></p>
+              <p class="card-text"><%= property.description %></p>
+            </div>
+            <div class="card-footer">
+              <small><%= number_to_currency(property.price) %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

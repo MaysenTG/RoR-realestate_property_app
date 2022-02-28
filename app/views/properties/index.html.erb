@@ -1,13 +1,15 @@
 <p style="color: green"><%= notice %></p>
 <h1>Properties</h1>
+
+<input type="text" class="form-control" style="width: 100%;" id="propertySearchInput" onkeyup="propertySearch()" placeholder="Search for property address..">
+<br/>
 <div id="properties">
-  <table class="table table-striped">
+  <table id="properties-table" class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Address</th>
-        <th scope="col">Bedrooms</th>
-        <th scope="col">Bathrooms</th>
+        <th scope="col">Total rooms</th>
         <th scope="col">Agent</th>
         <th scope="col" class="text-center" colspan="3">Actions</th>
       </tr>
@@ -17,8 +19,7 @@
         <tr>
           <td><%= property.name %></td>
           <td><%= property.address %></td>
-          <td><%= property.bedrooms %></td>
-          <td><%= property.bathrooms %></td>
+          <td><%= property.bedrooms + property.bathrooms %></td>
           <td><%= Agent.find(property.agent_id).first_name %></td>
           <td><%= link_to 'Show', property %></td>
           <td><%= link_to 'Edit', edit_property_path(property) %></td>
@@ -28,4 +29,30 @@
     </tbody>
   </table>
 </div>
-<%= link_to "New property", new_property_path %>
+<%= link_to "New property", new_property_path, class: "btn btn-primary" %>
+
+
+<script>
+function propertySearch() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("propertySearchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("properties-table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>

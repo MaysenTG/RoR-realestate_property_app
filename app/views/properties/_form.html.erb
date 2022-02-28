@@ -18,6 +18,7 @@
     <%= form.text_field :address, class: "form-control" %>
   </div>
   <div class="input-group">
+  
     <div class="mb-3">
       <%= form.label :price, style: "display: block" %>
       <%= form.number_field :price, class: "form-control" %>
@@ -45,7 +46,7 @@
   </div>
   <div class="mb-3">
       <%= form.label :description, style: "display: block" %>
-      <%= form.text_area :description, class: "form-control" %>
+      <%= form.text_area :description, class: "form-control", style: "height: 200px;" %>
     </div>
   <div class="mb-3">
     <button class="btn btn-primary">Save</button>
