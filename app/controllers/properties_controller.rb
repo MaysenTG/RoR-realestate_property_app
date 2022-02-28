@@ -1,10 +1,11 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[ show edit update destroy ]
   before_action :authenticate_agent!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :is_author?, only: [:edit, :update, :destroy]
 
   # GET /properties or /properties.json
   def index
-    @properties = Property.all
+    @properties = Property.all.order(agent_id: :desc)
   end
   
   
@@ -70,5 +71,9 @@ class PropertiesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def property_params
       params.require(:property).permit(:name, :address, :price, :bedrooms, :bathrooms, :land_area, :property_area, :description)
+    end
+    
+    def is_author?
+      redirect_to properties_path, alert: "You are not authorized to edit #{Agent.find(@property.agent_id).first_name}'s listing." unless @property.agent_id == current_agent.id
     end
 end

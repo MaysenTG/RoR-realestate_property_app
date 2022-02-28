@@ -1,6 +1,5 @@
 <p style="color: green"><%= notice %></p>
 <h1>Properties</h1>
-
 <input type="text" class="form-control" style="width: 100%;" id="propertySearchInput" onkeyup="propertySearch()" placeholder="Search for property address..">
 <br/>
 <div id="properties">
@@ -22,37 +21,40 @@
           <td><%= property.bedrooms + property.bathrooms %></td>
           <td><%= Agent.find(property.agent_id).first_name %></td>
           <td><%= link_to 'Show', property %></td>
-          <td><%= link_to 'Edit', edit_property_path(property) %></td>
-          <td><%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if property.agent_id == current_agent.id %>
+            <td><%= link_to 'Edit', edit_property_path(property) %></td>
+            <td><%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td>&nbsp;</th>
+            <td>&nbsp;</th>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 <%= link_to "New property", new_property_path, class: "btn btn-primary" %>
-
-
 <script>
-function propertySearch() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("propertySearchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("properties-table");
-  tr = table.getElementsByTagName("tr");
+  function propertySearch() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("propertySearchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("properties-table");
+    tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
       }
     }
   }
-}
 </script>

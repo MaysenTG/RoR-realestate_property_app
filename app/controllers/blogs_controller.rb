@@ -77,5 +77,5 @@ class BlogsController < ApplicationController
     
     def is_author?
       redirect_to blogs_path, alert: "You are not authorized to edit #{Agent.find(@blog.agent_id).first_name}'s blog." unless @blog.agent_id == current_agent.id
-  end
+    end
 end
