@@ -21,7 +21,7 @@
           <td><%= property.bedrooms + property.bathrooms %></td>
           <td><%= Agent.find(property.agent_id).first_name %></td>
           <td><%= link_to 'Show', property %></td>
-          <% if property.agent_id == current_agent.id %>
+          <% if agent_signed_in? and property.agent_id == current_agent.id %>
             <td><%= link_to 'Edit', edit_property_path(property) %></td>
             <td><%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% else %>

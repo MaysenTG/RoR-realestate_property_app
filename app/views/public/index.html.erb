@@ -11,9 +11,65 @@
       </div>
     </div>
   </div>
-  
   <!-- Featured products section -->
   <div class="container">
     <h3>Featured Properties</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @properties.order(price: :desc).limit(5).each do |property| %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= property.name %></h5>
+              <p class="card-text"><%= property.bedrooms %> <i class="fa-solid fa-bed"></i>&nbsp;&nbsp; <%= property.bathrooms %> <i class="fa-solid fa-toilet"></i></p>
+              <p class="card-text"><%= property.description %></p>
+            </div>
+            <div class="card-footer">
+              <small><%= number_to_currency(property.price) %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <br/>
+  <!-- Middle break, features section -->
+  <div class="container">
+    <div class="container px-4 py-5" id="featured-3">
+      <h2 class="pb-2 border-bottom">Why use us?</h2>
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col">
+          <h2>We only list houses of the highest quality</h2>
+          <p>Our team of builders only approve houses based on a proprietary inspection policy, so yes, gone are the days of Hardiplank or nasty asbestos materials</p>
+        </div>
+        <div class="feature col">
+          <h2>Featured title</h2>
+          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        </div>
+        <div class="feature col">
+          <h2>Featured title</h2>
+          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Latest products section -->
+  <div class="container">
+    <h3>Latest Properties</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @properties.order(created_at: :desc).limit(5).each do |property| %>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= property.name %></h5>
+              <p class="card-text"><%= property.bedrooms %> <i class="fa-solid fa-bed"></i>&nbsp;&nbsp; <%= property.bathrooms %> <i class="fa-solid fa-toilet"></i></p>
+              <p class="card-text"><%= property.description %></p>
+            </div>
+            <div class="card-footer">
+              <small><%= number_to_currency(property.price) %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
